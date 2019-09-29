@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import java.util.List;
 import java.util.Scanner;
 
@@ -65,5 +66,16 @@ public abstract class MemoryController {
 		}
 		view.append("\n\n\n" + message);
 		System.out.println(view.toString());
+=======
+
+public abstract class MemoryController {
+	
+	protected CardLayout cardLayout;
+	
+	public abstract void run();
+	
+	protected void print(String message) {
+		System.out.println(message);
+>>>>>>> 11fbcd819abe565e482952353f69664837c646ab
 	}
 }
