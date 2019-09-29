@@ -2,22 +2,22 @@ import Constants.Errors;
 
 public class Main {
 	
-	// We expect 
 	public static void main(String[] args) {
 		if (args.length != 1) {
 			errorMessage(Errors.wrongNumArgs);
 			return;
 		}
+		MemoryController controller;
 		switch (args[0]) {
-		case "solo":
+		case "solo": controller = new SoloMemoryController();
 			break;
-		case "competitive":
+		case "competitive": controller = new CompetitiveMemoryController();
 			break;
 		default:
 			errorMessage(Errors.wrongArgument);
 			return;
 		}
-		MemoryController controller;
+		controller.run();
 	}
 	
 	private static void errorMessage(Errors error) {
