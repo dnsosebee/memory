@@ -4,16 +4,90 @@ import java.util.List;
 import Constants.MemoryConstants;
 
 public class CardLayout {
-	List<Card> layout;
-	int cardCount;
+	private List<Card> layout;
+	private int activeCard1 = -1;
+	private int activeCard2 = -1;
+
+	private int cardCount;
+
 	public CardLayout() {
 		layout = new ArrayList<Card>();
 		cardCount = 0;
 	}
 
-	public void placeRandom(int cardNumber) {
+	public boolean gameContinues() {
+		return cardCount > 0;
+	}
+
+	public boolean choose(int index) {
+		if (index >= layout.size() || index < 0 || index == activeCard1) {
+			return false;
+		}
+		Card card = layout.get(index);
+		if (card != null) {
+			if (activeCard1 == -1) {
+				activeCard1 = index;
+			} else if (activeCard2 == -1) {
+				activeCard2 = index;
+			} else {
+				throw new RuntimeException("Too many cards were chosen at one time.");
+			}
+			card.faceUp = true;
+			return true;
+		}
+		return false;
+	}
+
+	public boolean CheckActiveCards() {
+		if (activeCard1 == -1 || activeCard2 == -1) {
+			throw new RuntimeException("Can't process any less than two active cards.");
+		}
+		if (layout.get(activeCard1).isPairOf(layout.get(activeCard2))) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void flipDownActiveCards() {
+		Card c;
+		if (activeCard1 > -1) {
+			c = layout.get(activeCard1);
+			c.faceUp = false;
+		}
+		if (activeCard2 > -1) {
+			c = layout.get(activeCard2);
+			c.faceUp = false;
+		}
+		deactivateCards();
+	}
+
+	public void removeActiveCards() {
+		if (activeCard1 > -1) {
+			layout.set(activeCard1, null);
+		}
+		if (activeCard2 > -1) {
+			layout.set(activeCard2, null);
+		}
+		deactivateCards();
+		cardCount -= 2;
+	}
+
+	private void deactivateCards() {
+		activeCard1 = -1;
+		activeCard2 = -1;
+	}
+
+	public CardLayout fillRandomly() {
+		for (int i = cardCount; i < MemoryConstants.NUMBER_OF_CARDS; ++i) {
+			placeRandom(i);
+		}
+		return this;
+	}
+
+	private void placeRandom(int cardNumber) {
 		Card card = new Card(cardNumber);
-		int index = (int) ((cardCount+ 1) * Math.random());
+		int index = (int) ((cardCount + 1) * Math.random());
 		placeCard(index, card);
 	}
 
@@ -23,5 +97,44 @@ public class CardLayout {
 		}
 		layout.add(index, card);
 		cardCount++;
+	}
+
+	public String toString() {
+		StringBuilder stringBuilder = new StringBuilder();
+		int layoutIndex = 0;
+		for (int y = 0; y < MemoryConstants.NUMBER_OF_SUITS; ++y) {
+			for (int x = 0; x < MemoryConstants.NUMBER_OF_CARD_TYPES; ++x) {
+				if (layoutIndex == layout.size()) {
+					break;
+				}
+				stringBuilder.append(cardIdentifier(layout.get(layoutIndex), layoutIndex));
+				layoutIndex++;
+			}
+			stringBuilder.append("\n");
+		}
+		return stringBuilder.toString();
+	}
+
+	private String cardIdentifier(Card card, int layoutIndex) {
+		if (card == null) {
+			return justifiedCard("");
+		} else if (card.faceUp) {
+			return card.toString();
+		} else {
+			String identifyingNumber = ((Integer) (layoutIndex + 1)).toString();
+			return justifiedCard(identifyingNumber);
+		}
+	}
+
+	private String justifiedCard(String identifyingNumber) {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(" [");
+		// Fill the space preceding the text with empty characters
+		for (int i = identifyingNumber.length(); i < MemoryConstants.CARD_BODY_LENGTH; ++i) {
+			stringBuilder.append(' ');
+		}
+		stringBuilder.append(identifyingNumber);
+		stringBuilder.append(']');
+		return stringBuilder.toString();
 	}
 }
