@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -38,7 +39,7 @@ public abstract class MemoryController {
 	}
 
 	private void chooseCard() {
-		int chosenNumber;
+		int chosenNumber = 0;
 		boolean invalidInput = true;
 
 		StringBuilder stringBuilder = new StringBuilder();
@@ -48,7 +49,11 @@ public abstract class MemoryController {
 
 		while (invalidInput) {
 			print(stringBuilder.toString());
-			chosenNumber = scanner.nextInt();
+			try {
+				chosenNumber = scanner.nextInt();
+			} catch (InputMismatchException e) {
+				;
+			}
 			scanner.nextLine();
 			if (cardLayout.choose(chosenNumber - 1)) {
 				break;

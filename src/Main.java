@@ -3,6 +3,10 @@ import Constants.MemoryConstants;
 
 public class Main {
 	public static void main(String[] args) {
+		if (args.length != 2) {
+			errorMessage(Errors.wrongNumArgs);
+			return;
+		}
 		int numberOfCardTypes = 0;
 
 		try {
@@ -39,8 +43,8 @@ public class Main {
 	}
 
 	private static void errorMessage(Errors error) {
-		String usage = "Please use either \"solo\" or \"competitive\" as your first argument, "
-				+ "and a number between 1 and 13 as your second argument. " + "Ex: Main.java solo 13";
+		String usage = "\nPlease use either \"solo\" or \"competitive\" as your first argument,"
+				+ "and a number between 1 and 13 as your second argument.\n" + "Ex: ./Memory.run solo 13";
 		String message;
 		switch (error) {
 		case wrongNumArgs:
