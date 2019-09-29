@@ -1,16 +1,13 @@
-<<<<<<< HEAD
+
 import java.util.ArrayList;
 import java.util.List;
 
 import Constants.MemoryConstants;
-=======
->>>>>>> 11fbcd819abe565e482952353f69664837c646ab
 
 public class CompetitiveMemoryController extends MemoryController {
 
 	public CompetitiveMemoryController() {
 		cardLayout = new CardLayout().fillRandomly();
-<<<<<<< HEAD
 		players = new ArrayList<Player>();
 		for (int i = 0; i < MemoryConstants.PLAYERS_IN_COMPETITIVE_GAME; ++i) {
 			players.add(new Player());
@@ -49,14 +46,4 @@ public class CompetitiveMemoryController extends MemoryController {
 		message.append(" points! Thanks for playing!");
 		super.print(message.toString());
 	}
-=======
-	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-
-	}
-
->>>>>>> 11fbcd819abe565e482952353f69664837c646ab
 }

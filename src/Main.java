@@ -2,11 +2,6 @@ import Constants.Errors;
 import Constants.MemoryConstants;
 
 public class Main {
-<<<<<<< HEAD
-
-=======
-	
->>>>>>> 11fbcd819abe565e482952353f69664837c646ab
 	public static void main(String[] args) {
 		int numberOfCardTypes = 0;
 
@@ -29,29 +24,18 @@ public class Main {
 		}
 		MemoryController controller;
 		switch (args[0]) {
-<<<<<<< HEAD
 		case "solo":
 			controller = new SoloMemoryController();
 			break;
 		case "competitive":
 			controller = new CompetitiveMemoryController();
-=======
-		case "solo": controller = new SoloMemoryController();
-			break;
-		case "competitive": controller = new CompetitiveMemoryController();
->>>>>>> 11fbcd819abe565e482952353f69664837c646ab
 			break;
 		default:
 			errorMessage(Errors.wrongArgument);
 			return;
 		}
-<<<<<<< HEAD
-
 		controller.run();
 		controller.endGameMessage();
-=======
-		controller.run();
->>>>>>> 11fbcd819abe565e482952353f69664837c646ab
 	}
 
 	private static void errorMessage(Errors error) {

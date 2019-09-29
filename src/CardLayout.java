@@ -4,23 +4,17 @@ import java.util.List;
 import Constants.MemoryConstants;
 
 public class CardLayout {
-<<<<<<< HEAD
 	private List<Card> layout;
 	private int activeCard1 = -1;
 	private int activeCard2 = -1;
 
 	private int cardCount;
-=======
-	List<Card> layout;
-	int cardCount;
->>>>>>> 11fbcd819abe565e482952353f69664837c646ab
 
 	public CardLayout() {
 		layout = new ArrayList<Card>();
 		cardCount = 0;
 	}
 
-<<<<<<< HEAD
 	public boolean gameContinues() {
 		return cardCount > 0;
 	}
@@ -84,8 +78,6 @@ public class CardLayout {
 		activeCard2 = -1;
 	}
 
-=======
->>>>>>> 11fbcd819abe565e482952353f69664837c646ab
 	public CardLayout fillRandomly() {
 		for (int i = cardCount; i < MemoryConstants.NUMBER_OF_CARDS; ++i) {
 			placeRandom(i);
@@ -124,7 +116,6 @@ public class CardLayout {
 	}
 
 	private String cardIdentifier(Card card, int layoutIndex) {
-<<<<<<< HEAD
 		if (card == null) {
 			return justifiedCard("");
 		} else if (card.faceUp) {
@@ -144,27 +135,6 @@ public class CardLayout {
 		}
 		stringBuilder.append(identifyingNumber);
 		stringBuilder.append(']');
-=======
-		StringBuilder stringBuilder = new StringBuilder();
-		String identifyingNumber;
-		stringBuilder.append(" (");
-		if (card == null) {
-
-			// Fill the space with blank characters
-			for (int i = 0; i < MemoryConstants.CARD_IDENTIFIERS_LENGTH; ++i) {
-				stringBuilder.append(' ');
-			}
-		} else {
-			identifyingNumber = ((Integer) (layoutIndex + 1)).toString();
-
-			// Fill the space preceding the identifying number with empty characters
-			for (int i = identifyingNumber.length(); i < MemoryConstants.CARD_IDENTIFIERS_LENGTH; ++i) {
-				stringBuilder.append(' ');
-			}
-			stringBuilder.append(identifyingNumber);
-		}
-		stringBuilder.append(')');
->>>>>>> 11fbcd819abe565e482952353f69664837c646ab
 		return stringBuilder.toString();
 	}
 }
