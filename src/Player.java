@@ -1,3 +1,4 @@
+// Player.java -- Class for representing a player in a game of memory
 
 public class Player {
 	private int pairsCollected;
@@ -8,10 +9,12 @@ public class Player {
 		failedAttempts = 0;
 	}
 	
+	// A successfully matched pair will increase the players pairsCollected by 1
 	public void succeeded() {
 		pairsCollected++;
 	}
 	
+	// An pair that is not a successful match increases the player's failedAttempts by 1
 	public void failed() {
 		failedAttempts++;
 	}
@@ -24,6 +27,7 @@ public class Player {
 		return failedAttempts;
 	}
 	
+	// Override of toString method, allows for printing of player information.
 	public String toString(int number) {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("\n     Player ");

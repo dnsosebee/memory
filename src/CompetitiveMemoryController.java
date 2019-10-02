@@ -1,3 +1,5 @@
+// CompetitiveMemoryController.java -- sub-class of MemoryController for 2-player gameplay.
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +8,7 @@ import Constants.MemoryConstants;
 
 public class CompetitiveMemoryController extends MemoryController {
 
+	// Initializes the controller with the correct number of players, and a randomized CardLayout.
 	public CompetitiveMemoryController() {
 		cardLayout = new CardLayout().fillRandomly();
 		players = new ArrayList<Player>();
@@ -14,6 +17,7 @@ public class CompetitiveMemoryController extends MemoryController {
 		}
 	}
 
+	// Prints the end game message for multiple players, with the ability to list players in a tie.
 	@Override
 	public void endGameMessage() {
 		StringBuilder message = new StringBuilder();

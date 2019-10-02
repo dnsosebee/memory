@@ -1,7 +1,11 @@
+//Main.java -- validates arguments for playing memory, then creates a MemoryController and initiates gameplay.
+
 import Constants.Errors;
 import Constants.MemoryConstants;
 
 public class Main {
+	// We expect exactly 2 arguments:
+	// one argument in {'solo','competitive'}, and one integer from 1 - 13 inclusive.
 	public static void main(String[] args) {
 		if (args.length != 2) {
 			errorMessage(Errors.wrongNumArgs);
@@ -42,6 +46,7 @@ public class Main {
 		controller.endGameMessage();
 	}
 
+	// Prints an error message to console which tells the user how to properly use the program.
 	private static void errorMessage(Errors error) {
 		String usage = "\nPlease use either \"solo\" or \"competitive\" as your first argument,"
 				+ "and a number between 1 and 13 as your second argument.\n" + "Ex: ./Memory.run solo 13";

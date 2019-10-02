@@ -1,3 +1,5 @@
+// MemoryConstants.java -- A package for global constants related to the game memory
+
 package Constants;
 
 public class MemoryConstants {
@@ -10,7 +12,7 @@ public class MemoryConstants {
 
 	public final static int CARD_BODY_LENGTH = 3;
 
+	// These ones are set in Main.java, and depend on args[1].
 	public static int NUMBER_OF_CARD_TYPES;
-
 	public static int NUMBER_OF_CARDS;
 }
